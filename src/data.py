@@ -26,7 +26,6 @@ def fetch_ohlcv(symbol: str, start: datetime, end: datetime) -> pd.DataFrame:
     if isinstance(df.index, pd.MultiIndex):
         df = df.droplevel(0)
     df.index.name = "date"
-    df = df.rename(columns={"open": "open", "high": "high", "low": "low", "close": "close", "volume": "volume"})
     return df[["open", "high", "low", "close", "volume"]].sort_index()
 
 
