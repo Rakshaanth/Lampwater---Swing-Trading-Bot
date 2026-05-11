@@ -17,7 +17,7 @@ def _client() -> StockHistoricalDataClient:
 
 def fetch_ohlcv(symbol: str, start: datetime, end: datetime) -> pd.DataFrame:
     client = _client()
-    req = StockBarsRequest(symbol_or_symbols=symbol, timeframe=TimeFrame.Day, start=start, end=end)
+    req = StockBarsRequest(symbol_or_symbols=symbol, timeframe=TimeFrame.Day, start=start, end=end, feed="iex")
     bars = client.get_stock_bars(req)
     df = bars.df
     if df.empty:
