@@ -11,7 +11,11 @@ labeling:
   take_profit: 0.08   # +8% target
   stop_loss: 0.05     # -5% stop
   # trigger_mode: strict uses macd_cross==1; relaxed uses macd > macd_signal
-  trigger_mode: strict
+  trigger_mode: relaxed
+  # Max RSI-14 for the dip-buy trigger. Empirical note (5y x 34 tickers):
+  # RSI never drops below ~37 while close > sma50, so values < 50 produce
+  # ZERO candidates in either mode. At 55 relaxed: ~1.7k candidates, 9.4% win.
+  rsi_max: 55
   min_candidates: 100
   min_positives: 30
 
