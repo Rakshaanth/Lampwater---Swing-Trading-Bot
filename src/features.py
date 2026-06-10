@@ -38,6 +38,8 @@ def add_features(df: pd.DataFrame) -> pd.DataFrame:
     prev_below = df["macd"].shift(1) <= df["macd_signal"].shift(1)
     curr_above = df["macd"] > df["macd_signal"]
     df["macd_cross"] = (prev_below & curr_above).astype(int)
+    df["sma_50"] = sma(df["close"], period=50)
+    df["above_sma50"] = df["close"] > df["sma_50"]
     df["sma_200"] = sma(df["close"], period=200)
     df["above_sma200"] = df["close"] > df["sma_200"]
     return df
